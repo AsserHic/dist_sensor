@@ -10,7 +10,7 @@ FASTLED_USING_NAMESPACE
 
 #define SERVO_PIN 9
 
-#define CANDLE_PIN 3
+#define CANDLE_PIN 2
 
 #define LED_PIN     12
 #define NUM_LEDS    64
@@ -30,8 +30,8 @@ void setup() {
   pinMode(CANDLE_PIN, OUTPUT);
   digitalWrite(CANDLE_PIN, candleOn);
 
-  tongue.attach(SERVO_PIN);
   tongue.write(0);
+  tongue.attach(SERVO_PIN);
 
   delay(1000); // Initial delay
 
@@ -73,14 +73,21 @@ void setEyeBrightness(int pos, float scale) {
 }
 
 void updateTongue() {
-  if (random(0, 100) < 2) {
+  if (!candleOn && random(0, 100) < 2) {
     tongue.write(random(30, 160));
+    delay(100);
   }
 }
 
 void updateCandle() {
-  if (random(0, 100) < 2) {
+  if (random(0, 300) < 2) {
     candleOn = !candleOn;
+    if (candleOn) {
+      tongue.detach();
+    } else {
+      tongue.attach(SERVO_PIN);
+      delay(100);
+    }
     digitalWrite(CANDLE_PIN, candleOn);
   }
 }
