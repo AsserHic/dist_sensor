@@ -14,7 +14,7 @@ FASTLED_USING_NAMESPACE
 
 #define LED_PIN     12
 #define NUM_LEDS    64
-#define BRIGHTNESS  50
+#define BRIGHTNESS  80
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
 
@@ -51,9 +51,9 @@ void updateEyes() {
   fill_rainbow(leds, NUM_LEDS, gHue, 7);
   EVERY_N_MILLISECONDS(20) { gHue++; }
 
-  float eye_l = max(0.0, sin(phase));
-  float eye_r = max(0.0, sin(phase + PI));
-  float eye_c = eye_l + eye_r;
+  float eye_l = 1.0 - max(0.0, sin(phase));
+  float eye_r = 1.0 - max(0.0, sin(phase + PI));
+  float eye_c = (1.0 - eye_l) + (1.0 - eye_r);
   setEyeBrightness(0, eye_l);
   setEyeBrightness(1, eye_c);
   setEyeBrightness(2, eye_r);
@@ -80,14 +80,14 @@ void updateTongue() {
 }
 
 void updateCandle() {
-  if (random(0, 300) < 2) {
+  if (random(0, 400) < 2) {
     candleOn = !candleOn;
     if (candleOn) {
       tongue.detach();
     } else {
       tongue.attach(SERVO_PIN);
-      delay(100);
     }
+    delay(100);
     digitalWrite(CANDLE_PIN, candleOn);
   }
 }
