@@ -8,20 +8,28 @@
 
 FASTLED_USING_NAMESPACE
 
+#define SERVO_PIN 9
+
+#define CANDLE_PIN 3
+
 #define LED_PIN     12
 #define NUM_LEDS    64
 #define BRIGHTNESS  50
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
 
-#define SERVO_PIN 9
+boolean candleOn = false;
 
 Adafruit_TiCoServo tongue;
+
 CRGB leds[NUM_LEDS];
 uint8_t gHue = 0;
 float phase = 0.0;
 
 void setup() {
+  pinMode(CANDLE_PIN, OUTPUT);
+  digitalWrite(CANDLE_PIN, candleOn);
+
   tongue.attach(SERVO_PIN);
   tongue.write(0);
 
@@ -36,6 +44,7 @@ void setup() {
 void loop() {
   updateEyes();
   updateTongue();
+  updateCandle();
 }
 
 void updateEyes() {
@@ -66,5 +75,12 @@ void setEyeBrightness(int pos, float scale) {
 void updateTongue() {
   if (random(0, 100) < 2) {
     tongue.write(random(30, 160));
+  }
+}
+
+void updateCandle() {
+  if (random(0, 100) < 2) {
+    candleOn = !candleOn;
+    digitalWrite(CANDLE_PIN, candleOn);
   }
 }
