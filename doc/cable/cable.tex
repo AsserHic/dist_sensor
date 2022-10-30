@@ -1,0 +1,350 @@
+\documentclass{beamer}
+\usetheme{AnnArbor}
+\usecolortheme{crane}
+
+\usepackage[english]{babel}
+\usepackage{bibentry}
+\usepackage[siunitx, nooldvoltagedirection]{circuitikz}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{siunitx}
+
+\usetikzlibrary{decorations.pathreplacing}
+\tikzset{B/.style = {
+  decorate,
+  decoration={brace, amplitude=5pt, raise=3pt, mirror},
+  thick
+}}
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+  },
+}
+
+\defbeamertemplate{description item}{align left}{\insertdescriptionitem\hfill}
+
+\title{What about Wires?}
+\author{Marko Laakso}
+\institute{Asser's Lab}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Physical properties}
+
+\begin{frame}{Conductors are everywhere}
+\includegraphics[keepaspectratio, width=0.94\paperwidth]{powerline_h.jpg}
+\end{frame}
+
+\begin{frame}{They come in all shapes}
+\includegraphics[keepaspectratio, width=0.94\paperwidth]{wires.jpg}
+\end{frame}
+
+\logo{\includegraphics[scale=0.2]{logo_plain.png}}
+
+\begin{frame}{Kinds of conductors}
+ \begin{description}
+  \setbeamertemplate{description item}[align left]
+  \item[cable] multiple insulated wires within a jacket
+  \item[\hyperlink{coaxial}{coaxial cable}] a cable where an inner conductor is surrounded by a conducting shield
+  \item[flat cable] multiple insulated wires attached side by side so that they form a flat ribbon
+  \item[PCB trace] A conductive path on a printed circuit board
+  \item[twisted pair] a cable construct where wire pairs are twisted together for a better electromagnetic compatibility
+  \item[wire] a single conductor
+ \end{description}
+\end{frame}
+
+\begin{frame}{What are the wires}
+\begin{columns}
+ \begin{column}{0.48\textwidth}
+ \begin{itemize}
+    \only<1->{\item Conductors?
+	  \begin{circuitikz}
+	    \draw (0,0) to[ short ] (2,0); 
+	  \end{circuitikz}}    
+    \only<2->{\item Resistors?
+	  \scalebox{0.5}{\begin{circuitikz}
+	    \draw (0,0) to[ european resistor ] (2,0); 
+	  \end{circuitikz}}}
+    \only<3->{\item Antenna?
+	  \scalebox{0.3}{\begin{circuitikz}
+            \node[antenna, xscale=-1] {};
+	  \end{circuitikz}}}
+    \only<4->{\item Capasitors?
+	  \scalebox{0.3}{\begin{circuitikz}
+	    \draw (0,0) to[ capacitor ] (2,0); 
+	  \end{circuitikz}}}
+    \only<5->{\item Inductors?
+	  \scalebox{0.5}{\begin{circuitikz}
+	    \draw (0,0) to[ cute inductor ] (2,0); 
+	  \end{circuitikz}}}
+    \only<6->{\item Clotheslines?}
+ \end{itemize}\end{column}
+ \begin{column}{0.48\textwidth}
+  \tcbox[colframe=green!30!black, colback=green!30]{
+    \only<1>{\includegraphics[width=0.65\linewidth]{powerline_h.jpg}}
+    \only<5>{\includegraphics[width=0.65\linewidth]{inductors.jpg}}
+  }
+  \only<1>{Charge carriers are transferred along the wires.}
+  \only<2>{Some energy is dissipated as heat unless superconductors.}
+  \only<3>{Unshielded wires can be used to transmit and receive electromagnetic radiation.}
+  \only<4>{Wires store tiny charges and their parasitic capacitance can be seen in many sensitive, high-frequency applications.}
+  \only<5>{A magnetic field forms around a conducting wire and it stores some energy.}
+  \only<6->{The mechanical strength of a wire can be used for various applications.}
+ \end{column}
+\end{columns}
+\vspace{20px}
+\only<7->{\centering\huge\color{purple} All that and a lot more!}
+\end{frame}
+
+\begin{frame}{Some of their properties include}
+ \begin{itemize}
+  \item Temperature range for operation ($\SI{}{\kelvin}$ interval)
+  \item Elasticity
+  \item Color
+  \item UV resistance, durability
+  \item Length ($\SI{}{\meter}$)
+   \begin{itemize}
+    \item Mass ($\SI{}{\kilo\gram}$)
+    \item Resistance ($\SI{}{\ohm}$), conductance ($\SI{}{\siemens}$)
+    \item \hyperlink{impedance}{Impedance} ($\SI{}{\ohm}$), admittance ($\SI{}{\siemens}$)
+    \item Price
+   \end{itemize}
+  \item Cross-sectional area ($\SI{}{\meter^2}$)
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Connectors}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    Connectors
+  \end{column}
+  \begin{column}{0.48\textwidth}
+   \tcbox[colframe=green!30!black, colback=green!30]{
+    \includegraphics[width=0.65\linewidth]{connectors.jpg}
+  } 
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[label=impedance]{Impedance}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    Impedance is the total opposition to alternating current. Unit is ohm ($\SI{}{\ohm}$).
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \begin{block}{$Z = R + jX$}
+        $R$ is the resistance \\
+        $X$ is the reactance\footnote{Please notice the imaginary symbol of $j = \sqrt{-1}$ in place of the typical $i$. This is to avoid confusion with the current symbol.}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Smith diagram}
+VNA image
+\end{frame}
+
+\begin{frame}{Speed of electricity}
+Matching trace lengths to keep signals in sync.
+Travel.~\cite{horowitz2020art}
+\end{frame}
+
+\begin{frame}{Speed of electrons}
+
+\end{frame}
+
+\begin{frame}[t]{Signal proparation}{}
+\only<1>{{\footnotesize Varitasium introduced an interesting setup to demonstrate how the signal propagates within an electrical circuit~\cite{veritasium2021}.
+ Here, we represent a somewhat simplified setup along the same idea.}}
+
+How long does it take for the signal to reach our voltmeter once we press the button?
+
+\begin{circuitikz}
+  \draw (0,0)
+  to[short] (0,2)
+  to[short, l_=${l_{left} = 1s\times c}$] (3,2)
+  to[voltmeter] (6,2)
+  to[short, l_=${l_{right} = 1s\times c}$] (10,2)
+  to[short] (10,0)
+  to[push button] (3,0)
+  (2,0) to[battery, v_={~}] (3,0)
+  to[short] (0,0);
+  \draw[B] (10,0) -- node[right=5pt] {$\SI{1}{\meter}$ apart} (10,2);
+\end{circuitikz}
+\only<2->{
+ \begin{enumerate}[A.]
+  \item<2-> \only<5>{\color{red}}$\approx \SI{1}{\second}$
+    \only<2>{(travel half circuit from switch to the voltmeter)}
+    \only<5>{\tiny\color{black} The full voltage will be reached as the current completes the half circuit but\ldots}
+  \item<3-> \only<5>{\color{red}}$\approx \SI{2}{\second}$
+    \only<3>{(complete the circuit back to the battery)}
+  \item<4-> \only<5>{\color{green}}$\frac{1}{c}$
+    \only<4>{(reach the parallel wire over the gap)}
+    \only<5>{\tiny\color{black} We'll induce a low voltage to the parallel wire almost immediatelly.}
+ \end{enumerate}
+}
+\end{frame}
+
+\section{Transmission lines}
+
+\begin{frame}{Transmission lines}
+\begin{circuitikz}[scale=1.0]
+   \draw
+	(0,0) to [short, o-] (1,0)
+	(1,0) to [transmission line] (3,0)
+	(3,0) to [short, -o] (4,0);
+\end{circuitikz}
+
+Transmit power from source to load.
+\end{frame}
+
+
+\begin{frame}[t]{Transmission lines}
+\begin{circuitikz}[scale=0.4, transform shape]
+  \draw
+    (0,0) to [short, o-] (1,0)
+    (19,0) to [short] (0,0)
+    (21,0) to [short, -o] (23,0)
+    (21,5) to [short, -o] (23,5)
+    (0,5) to [short, o-] (1,5)
+    ;
+  \draw
+    (1,5) to [L, l=$L_1$] (3,5)
+    (7,5) to [L, l=$L_2$] (9,5)
+    ;
+
+  \draw[visible on=<1>]
+    (3,5) to [R, l=$R_{s1}$] (7,5)
+
+    (7,0) to [short] (7,1)
+    (6,1) to [short] (8,1)
+    (6,1) to [C, l=$C_1$] (6,4)
+    (8,1) to [R, l=$R_{g1}$] (8,4)
+    (6,4) to [short] (8,4)
+    (7,5) to [short] (7,4)
+
+    (9,5) to [R, l=$R_{s2}$] (13,5)
+
+    (13,0) to [short] (13,1)
+    (12,1) to [short] (14,1)
+    (12,1) to [C, l=$C_2$] (12,4)
+    (14,1) to [R, l=$R_{g2}$] (14,4)
+    (12,4) to [short] (14,4)
+    (13,5) to [short] (13,4)
+    ;
+  \draw[visible on=<2>]
+    (3,5) to [short] (7,5)
+    (7,0) to [C, l=$C_1$] (7,5)
+    (9,5) to [short] (13,5)
+    (13,0) to [C, l=$C_2$] (13,5)
+    ;
+  \draw[color=gray, visible on=<1>]
+    (13,5) to [L, l=$L_n$] (15,5)
+    (15,5) to [R, l=$R_{sn}$] (19,5)
+
+    (19,0) to [short] (19,1)
+    (18,1) to [short] (20,1)
+    (18,1) to [C, l=$C_n$] (18,4)
+    (20,1) to [R, l=$R_{gn}$] (20,4)
+    (18,4) to [short] (20,4)
+    (19,5) to [short] (19,4)
+    ;
+  \draw[color=gray, visible on=<2>]
+    (13,5) to [L, l=$L_n$] (15,5)
+    (15,5) to [short] (19,5)
+    (19,0) to [C, l=$C_n$] (19,5)
+    ;
+  \draw[color=gray]
+    (0,0) to [sV, l=source] (0,5)
+    (23,0) to [R, l=load] (23,5)
+    ;
+  \draw[dashed]
+    (19,0) to (21,0)
+    (19,5) to (21,5)
+    ;
+\end{circuitikz}
+
+\only<1>{
+  We can imagine a transmission line as a series of (indefinitelly small) circuits.
+
+  Total resistance ($\sum_{n=1} ^{\infty} R_{sn}+R_{gn}$) is typically so small that it can be ignored.
+}
+\only<2>{
+  Velocity factor
+}
+\end{frame}
+
+\begin{frame}[label=coaxial]{Coaxial cable}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    Coaxial
+
+    Characteristic impedance:
+    \begin{equation*} % Appendix H, p.1116
+      Z_0 = \sqrt{L/C} = \frac{138}{\sqrt{\epsilon}}\log_{10}{\frac{b}{a}}
+    \end{equation*}
+    \begin{description}
+      \setbeamertemplate{description item}[align left]
+      \item[$a$] outer diameter of the cable
+      \item[$b$] innner diameter
+      \item[$\epsilon$] dielectric constant
+    \end{description}
+    The ratio of inductance and capacitance is independent of the length.
+  \end{column}
+  \begin{column}{0.48\textwidth}
+   \tcbox[colframe=green!30!black, colback=green!30]{
+    \includegraphics[width=0.65\linewidth]{coaxial_con.jpg}
+  } 
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Reflections}
+Improper matching causes reflections.
+Open end behaves as a short for some frequencies.
+\end{frame}
+
+\begin{frame}{Impedance matching}
+For the maximal power transfer, the impedances shall match between the parts.
+
+\includegraphics[width=0.4\linewidth]{coaxial_out.jpg}
+\includegraphics[width=0.4\linewidth]{coaxial_in.jpg}
+\end{frame}
+
+\begin{frame}{Termination}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    Termination
+  \end{column}
+  \begin{column}{0.48\textwidth}
+   \tcbox[colframe=green!30!black, colback=green!30]{
+    \includegraphics[width=0.65\linewidth]{terminators.jpg}
+  } 
+  \end{column}
+\end{columns}
+\end{frame}
+
+\logo{} % Disable logo
+\section{References}
+
+\begin{frame}{That's all for now}
+\centering \Huge
+\emph{Thank you!}
+\end{frame}
+
+\begin{frame}[t, allowframebreaks]
+\frametitle{References}
+\bibliographystyle{plain}
+\bibliography{cable}
+\end{frame}
+
+\end{document}
