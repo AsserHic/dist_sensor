@@ -7,7 +7,7 @@
 \usepackage[siunitx, nooldvoltagedirection]{circuitikz}
 \usepackage{hyperref}
 \usepackage[most]{tcolorbox}
-\usepackage{siunitx}
+\usepackage{transparent}
 
 \usetikzlibrary{decorations.pathreplacing}
 \tikzset{B/.style = {
@@ -334,6 +334,8 @@ For the maximal power transfer, the impedances shall match between the parts.
 \end{frame}
 
 \logo{} % Disable logo
+\pgfdeclareimage[width=\paperwidth]{bg}{powerline_v.jpg}
+\setbeamertemplate{background}{\transparent{0.35}\pgfuseimage{bg}}
 \section{References}
 
 \begin{frame}{That's all for now}
