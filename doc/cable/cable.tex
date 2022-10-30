@@ -41,11 +41,11 @@
 \section{Physical properties}
 
 \begin{frame}{Conductors are everywhere}
-\includegraphics[keepaspectratio, width=0.94\paperwidth]{powerline_h.jpg}
+\centering\includegraphics[keepaspectratio, width=0.94\paperwidth]{powerline_h.jpg}
 \end{frame}
 
 \begin{frame}{They come in all shapes}
-\includegraphics[keepaspectratio, width=0.94\paperwidth]{wires.jpg}
+\centering\includegraphics[keepaspectratio, width=0.88\paperwidth]{wires.jpg}
 \end{frame}
 
 \logo{\includegraphics[scale=0.2]{logo_plain.png}}
@@ -57,6 +57,7 @@
   \item[\hyperlink{coaxial}{coaxial cable}] a cable where an inner conductor is surrounded by a conducting shield
   \item[flat cable] multiple insulated wires attached side by side so that they form a flat ribbon
   \item[PCB trace] A conductive path on a printed circuit board
+  \item[\hyperlink{fatique}{stranded wire}] Number of small wires bundled or wrapped together for an enhanced flexibility
   \item[twisted pair] a cable construct where wire pairs are twisted together for a better electromagnetic compatibility
   \item[wire] a single conductor
  \end{description}
@@ -118,7 +119,7 @@
     \item \hyperlink{impedance}{Impedance} ($\SI{}{\ohm}$), admittance ($\SI{}{\siemens}$)
     \item Price
    \end{itemize}
-  \item Cross-sectional area ($\SI{}{\meter^2}$)
+  \item Cross-sectional area ($\SI{}{\meter^2}$)~\cite{iec2004}
  \end{itemize}
 \end{frame}
 
@@ -133,6 +134,16 @@
   } 
   \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}[label=fatique]{Metal fatique}
+ \begin{itemize}
+  \item Metal wires and their connection points especially, are prune for fractures when bended
+  \item Stranded wires are more resistant against the metal fatigue than typical solid wires
+  \item \textbf{Vibrating or moving wires shall not be soldered}
+  \item Clamp connectors are more reistant
+  \item A connector can be followed by a sleave for some extra support
+ \end{itemize}
 \end{frame}
 
 \begin{frame}[label=impedance]{Impedance}
@@ -171,9 +182,9 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 \begin{circuitikz}
   \draw (0,0)
   to[short] (0,2)
-  to[short, l_=${l_{left} = 1s\times c}$] (3,2)
+  to[short, l_=${l_{left} = \SI{1}{\second}\times c}$~\footnote{$\SI{1}{\second}\times c=\SI{299 792 458}{\meter}$}] (3,2)
   to[voltmeter] (6,2)
-  to[short, l_=${l_{right} = 1s\times c}$] (10,2)
+  to[short, l_=${l_{right} = \SI{1}{\second}\times c}$] (10,2)
   to[short] (10,0)
   to[push button] (3,0)
   (2,0) to[battery, v_={~}] (3,0)
@@ -205,6 +216,8 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 \end{circuitikz}
 
 Transmit power from source to load.
+
+Theory becomes important as the length of the wire exceeds $1/\lambda$.
 \end{frame}
 
 
@@ -311,6 +324,8 @@ Transmit power from source to load.
 \begin{frame}{Reflections}
 Improper matching causes reflections.
 Open end behaves as a short for some frequencies.
+Square waves have include high frequency components. Frequency specific properties of the transmission line will distord the signal.
+Cases: Open (reflection back), Closed (inverse reflection) - attenuation
 \end{frame}
 
 \begin{frame}{Impedance matching}
