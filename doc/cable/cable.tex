@@ -6,8 +6,11 @@
 \usepackage{bibentry}
 \usepackage[siunitx, nooldvoltagedirection]{circuitikz}
 \usepackage{hyperref}
+\usepackage{pgfplots}
 \usepackage[most]{tcolorbox}
 \usepackage{transparent}
+
+\usepgfplotslibrary{smithchart}
 
 \usetikzlibrary{decorations.pathreplacing}
 \tikzset{B/.style = {
@@ -91,8 +94,9 @@
  \end{itemize}\end{column}
  \begin{column}{0.48\textwidth}
   \tcbox[colframe=green!30!black, colback=green!30]{
-    \only<1>{\includegraphics[width=0.65\linewidth]{powerline_h.jpg}}
-    \only<5>{\includegraphics[width=0.65\linewidth]{inductors.jpg}}
+    \only<1>{\includegraphics[width=0.75\linewidth]{powerline_h.jpg}}
+    \only<4>{\includegraphics[width=0.75\linewidth]{CAP.png}}
+    \only<5>{\includegraphics[width=0.75\linewidth]{inductors.jpg}}
   }
   \only<1>{Charge carriers are transferred along the wires.}
   \only<2>{Some energy is dissipated as heat unless superconductors.}
@@ -161,7 +165,24 @@
 \end{frame}
 
 \begin{frame}{Smith diagram}
-VNA image
+\begin{columns}
+ \begin{column}{0.58\textwidth}
+  \begin{tikzpicture}
+    \begin{smithchart}[samples=201, line cap=round, smooth]
+      \addplot[domain=0:30, color=blue] (x,0.61);
+      \addplot+[no marks, domain=0:30, color=red] (x,-0.33);
+      \addplot+[no marks, domain=-50:50, color=green](0.52,x);
+    \end{smithchart}
+  \end{tikzpicture}
+ \end{column}
+ \begin{column}{0.5\textwidth}\small
+ {\color{green}Constant resistance ($0.52$)}
+
+ {\color{blue}Constant inductive reactance ($0.61$)}
+
+ {\color{red}Constant capacitive reactance ($-0.33$)}
+ \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Speed of electricity}
