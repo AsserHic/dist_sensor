@@ -69,7 +69,7 @@
 \begin{frame}{What are the wires}
 \begin{columns}
  \begin{column}{0.48\textwidth}
- \begin{itemize}
+   \begin{itemize}
     \only<1->{\item Conductors?
 	  \begin{circuitikz}
 	    \draw (0,0) to[ short ] (2,0); 
@@ -91,12 +91,16 @@
 	    \draw (0,0) to[ cute inductor ] (2,0); 
 	  \end{circuitikz}}}
     \only<6->{\item Clotheslines?}
- \end{itemize}\end{column}
+   \end{itemize}
+ \end{column}
  \begin{column}{0.48\textwidth}
   \tcbox[colframe=green!30!black, colback=green!30]{
-    \only<1>{\includegraphics[width=0.75\linewidth]{powerline_h.jpg}}
-    \only<4>{\includegraphics[width=0.75\linewidth]{CAP.png}}
-    \only<5>{\includegraphics[width=0.75\linewidth]{inductors.jpg}}
+    \only<1>{\includegraphics[width=0.75\linewidth]{powerline_h.jpg}
+    }\only<2>{\includegraphics[width=0.75\linewidth]{resistor.jpg}
+    }\only<3>{\includegraphics[width=0.75\linewidth]{antenna.jpg}
+    }\only<4>{\includegraphics[width=0.75\linewidth]{CAP.png}
+    }\only<5>{\includegraphics[width=0.75\linewidth]{inductors.jpg}
+    }\only<6->{\includegraphics[width=0.75\linewidth]{clothesline.jpg}}
   }
   \only<1>{Charge carriers are transferred along the wires.}
   \only<2>{Some energy is dissipated as heat unless superconductors.}
