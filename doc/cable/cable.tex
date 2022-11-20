@@ -5,7 +5,6 @@
 \usepackage[english]{babel}
 \usepackage{bibentry}
 \usepackage[siunitx, nooldvoltagedirection]{circuitikz}
-\usepackage{hyperref}
 \usepackage{pgfplots}
 \usepackage[most]{tcolorbox}
 \usepackage{transparent}
@@ -28,6 +27,12 @@
 
 \defbeamertemplate{description item}{align left}{\insertdescriptionitem\hfill}
 
+\hypersetup{pdfinfo={
+  Subject={Wires as components},
+  Keywords={wire;transmission line},
+  Producer={Asser's Lab tools},
+  Creator={Asser's scripts}
+}}
 \title{What about Wires?}
 \author{Marko Laakso}
 \institute{Asser's Lab}
@@ -111,7 +116,8 @@
  \end{column}
 \end{columns}
 \vspace{20px}
-\only<7->{\centering\huge\color{purple} All that and a lot more!}
+\only<7>{\centering\huge\color{purple} All that and a lot more!}
+\only<8->{One may consider many linear components special wires in special configuration empasizing some of the intended properties.}
 \end{frame}
 
 \begin{frame}{Some of their properties include}
@@ -166,6 +172,25 @@
     \end{block}
   \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{Skin effect}
+ \begin{tikzpicture}[remember picture,overlay]
+  \filldraw[xshift=0.85\linewidth, yshift=-3.3cm, inner color=white, outer color=blue] (0,0) circle (1.2);
+  \draw[xshift=0.85\linewidth, yshift=-3.3cm](0,0) circle (0.9);
+ \end{tikzpicture}
+ \begin{itemize}
+  \item Current dencity of an AC tends to form an exponentially decreasing gradient towards the depth of the conductor
+  \item Skin depth ($\delta$) represents the depth where the current density drops below $e^{-1} \approx 37\%$
+  \item
+    $\delta = \frac{1}{\sqrt{\pi f \mu  \sigma}}$, where
+    \begin{description}
+      \setbeamertemplate{description item}[align left]
+      \item[$f$] the frequency of the current
+      \item[$\mu$] the permeability of the material
+      \item[$\sigma$] conductivity of the material
+    \end{description}
+ \end{itemize}
 \end{frame}
 
 \begin{frame}{Smith diagram}
