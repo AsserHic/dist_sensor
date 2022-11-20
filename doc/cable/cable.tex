@@ -46,7 +46,7 @@
     \tableofcontents
 \end{frame}
 
-\section{Physical properties}
+\section{What are wires}
 
 \begin{frame}{Conductors are everywhere}
 \centering\includegraphics[keepaspectratio, width=0.94\paperwidth]{powerline_h.jpg}
@@ -120,23 +120,6 @@
 \only<8->{One may consider many linear components special wires in special configuration empasizing some of the intended properties.}
 \end{frame}
 
-\begin{frame}{Some of their properties include}
- \begin{itemize}
-  \item Temperature range for operation ($\SI{}{\kelvin}$ interval)
-  \item Elasticity
-  \item Color
-  \item UV resistance, durability
-  \item Length ($\SI{}{\meter}$)
-   \begin{itemize}
-    \item Mass ($\SI{}{\kilo\gram}$)
-    \item Resistance ($\SI{}{\ohm}$), conductance ($\SI{}{\siemens}$)
-    \item \hyperlink{impedance}{Impedance} ($\SI{}{\ohm}$), admittance ($\SI{}{\siemens}$)
-    \item Price
-   \end{itemize}
-  \item Cross-sectional area ($\SI{}{\meter^2}$)~\cite{iec2004}
- \end{itemize}
-\end{frame}
-
 \begin{frame}{Connectors}
 \begin{columns}
   \begin{column}{0.48\textwidth}
@@ -160,12 +143,42 @@
  \end{itemize}
 \end{frame}
 
+\section{Physical properties}
+
+\begin{frame}{Some of their properties include}
+ \begin{itemize}
+  \item Temperature range for operation ($\SI{}{\kelvin}$ interval)
+  \item Elasticity
+  \item Color
+  \item UV resistance, durability
+  \item Length ($\SI{}{\meter}$)
+   \begin{itemize}
+    \item Mass ($\SI{}{\kilo\gram}$)
+    \item Resistance ($\SI{}{\ohm}$), conductance ($\SI{}{\siemens}$)
+    \item \hyperlink{impedance}{Impedance} ($\SI{}{\ohm}$), admittance ($\SI{}{\siemens}$)
+    \item Price
+   \end{itemize}
+  \item Cross-sectional area ($\SI{}{\meter^2}$)~\cite{iec2004}
+ \end{itemize}
+\end{frame}
+
 \begin{frame}[label=impedance]{Impedance}
 \begin{columns}
-  \begin{column}{0.48\textwidth}
-    Impedance is the total opposition to alternating current. Unit is ohm ($\SI{}{\ohm}$).
+  \begin{column}{0.58\textwidth}
+   \begin{itemize}
+    \item Impedance is the total opposition to alternating current
+    \item Unit is ohm ($\SI{}{\ohm}$)
+    \item Resistance means energy loss as heat
+    \item No energy is lost through the reactance
+    \item Reactance consists of capacitive ($X_C$) and inductive ($X_L$) reactance
+     \begin{itemize}
+      \item inductive reactance ($X > 0$)
+      \item purely resistative ($X > 0$)
+      \item capacitative reactance ($X < 0$)
+     \end{itemize}
+   \end{itemize}
   \end{column}
-  \begin{column}{0.48\textwidth}
+  \begin{column}{0.38\textwidth}
     \begin{block}{$Z = R + jX$}
         $R$ is the resistance \\
         $X$ is the reactance\footnote{Please notice the imaginary symbol of $j = \sqrt{-1}$ in place of the typical $i$. This is to avoid confusion with the current symbol.}
@@ -214,9 +227,16 @@
 \end{columns}
 \end{frame}
 
+\section{Speed of electricity}
+
 \begin{frame}{Speed of electricity}
-Matching trace lengths to keep signals in sync.
-Travel.~\cite{horowitz2020art}
+\begin{itemize}
+ \item Electronic signals propagate approximately at $c/2$ along the PCB traces~\cite[p. 8--9]{horowitz2020art}
+ \item Matching trace lengths to keep signals in sync
+ \begin{itemize}
+  \item DDM memory traces may need matching in length to $\SI{0.5}{\milli\meter}$!
+ \end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Speed of electrons}
@@ -388,7 +408,12 @@ For the maximal power transfer, the impedances shall match between the parts.
 \begin{frame}{Termination}
 \begin{columns}
   \begin{column}{0.48\textwidth}
-    Termination
+   \begin{itemize}
+    \item Terminators are used to prevent reflections
+    \item Used in the end of a transmission line when the impedance of
+          the sink is above the transmission line
+    \item Simple resistors in parallel to the sink
+   \end{itemize}
   \end{column}
   \begin{column}{0.48\textwidth}
    \tcbox[colframe=green!30!black, colback=green!30]{
