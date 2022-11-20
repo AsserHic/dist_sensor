@@ -236,6 +236,14 @@
  \begin{itemize}
   \item DDM memory traces may need matching in length to $\SI{0.5}{\milli\meter}$!
  \end{itemize}
+ \item Speed of electromagnetic waves in a good conductor is frequency dependent: \\
+    $v \approx \SI{0.41}{\meter/\second}\sqrt{\frac{f / \SI{1}{\hertz}}{\sigma_r\mu_r}}$, where
+    \begin{description}
+      \setbeamertemplate{description item}[align left]
+      \item[$\mu_r$] relative magnetic permeability
+      \item[$\sigma_r$] conductivity of the material relative to that of copper
+    \end{description}
+
 \end{itemize}
 \end{frame}
 
@@ -284,10 +292,12 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 	(1,0) to [transmission line] (3,0)
 	(3,0) to [short, -o] (4,0);
 \end{circuitikz}
-
-Transmit power from source to load.
-
-Theory becomes important as the length of the wire exceeds $1/\lambda$.
+\begin{itemize}
+ \item Transmit power from source to load
+ \item Theory becomes important as the length of the wire exceeds $\frac{\lambda}{20}$
+ \item An open wire acts like a short circuit when its length is $\frac{\lambda}{4}$ (or its odd multiple)!
+ \item Transmissions lines behave capacitively on low frequencies
+\end{itemize}
 \end{frame}
 
 
@@ -392,15 +402,29 @@ Theory becomes important as the length of the wire exceeds $1/\lambda$.
 \end{frame}
 
 \begin{frame}{Reflections}
-Improper matching causes reflections.
-Open end behaves as a short for some frequencies.
-Square waves have include high frequency components. Frequency specific properties of the transmission line will distord the signal.
-Cases: Open (reflection back), Closed (inverse reflection) - attenuation
+\begin{itemize}
+ \item Improper \hyperlink{impedance_matching}{impedance matching} causes reflections
+ \item Square waves include high frequency components and
+       the frequency specific properties of the transmission line will distord the signal
+ \item Cases: Open (reflection back), Closed (inverse reflection) - attenuation
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Impedance matching}
+\begin{frame}[label=impedance_matching]{Impedance matching}
 For the maximal power transfer, the impedances shall match between the parts.
-
+\begin{itemize}
+ \item Lossy matching can be achieved with a resistive network (often an L pad)
+  \begin{itemize}
+   \item Frequency independent
+   \item Reactive impedance need to be insignificantly low
+  \end{itemize}
+ \item Reactive matching is more efficient
+  \begin{itemize}
+   \item Frequency specific solution with a limited bandwith
+   \item Impedance matching transformermers
+   \item Low pass, high pass, or bandpass configurations
+  \end{itemize}
+\end{itemize}
 \includegraphics[width=0.4\linewidth]{coaxial_out.jpg}
 \includegraphics[width=0.4\linewidth]{coaxial_in.jpg}
 \end{frame}
@@ -411,8 +435,9 @@ For the maximal power transfer, the impedances shall match between the parts.
    \begin{itemize}
     \item Terminators are used to prevent reflections
     \item Used in the end of a transmission line when the impedance of
-          the sink is above the transmission line
-    \item Simple resistors in parallel to the sink
+          the load is above the transmission line
+    \item Simple resistors in parallel to the load
+    \item Properly terminated transmission line behave like a pure resistive loads without capacitance
    \end{itemize}
   \end{column}
   \begin{column}{0.48\textwidth}
