@@ -123,7 +123,9 @@
 \begin{frame}{Connectors}
 \begin{columns}
   \begin{column}{0.48\textwidth}
-    Connectors
+   \begin{itemize}
+    \item Strong, solderless and detachable joints
+   \end{itemize}
   \end{column}
   \begin{column}{0.48\textwidth}
    \tcbox[colframe=green!30!black, colback=green!30]{
@@ -234,20 +236,30 @@
  \item Electronic signals propagate approximately at $c/2$ along the PCB traces~\cite[p. 8--9]{horowitz2020art}
  \item Matching trace lengths to keep signals in sync
  \begin{itemize}
-  \item DDM memory traces may need matching in length to $\SI{0.5}{\milli\meter}$!
+  \item $\SI{25}{\pico\second}$ tolerance between signal requires matching $<\SI{4}{\milli\meter}$
+  \item DDM memory traces may need matching in length to $\SI{0.5}{\milli\meter}$!\\
+        \tcbox[colframe=green!30!black, colback=green!30]{
+          \includegraphics[width=0.45\linewidth]{trace_length.jpg}
+        }
  \end{itemize}
- \item Speed of electromagnetic waves in a good conductor is frequency dependent: \\
-    $v \approx \SI{0.41}{\meter/\second}\sqrt{\frac{f / \SI{1}{\hertz}}{\sigma_r\mu_r}}$, where
-    \begin{description}
-      \setbeamertemplate{description item}[align left]
-      \item[$\mu_r$] relative magnetic permeability
-      \item[$\sigma_r$] conductivity of the material relative to that of copper
-    \end{description}
-
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Speed of electrons}
+\begin{itemize}
+ \item The average movement of the charged particles is called drift velocity
+ \begin{itemize}
+  \item Proportional to current
+  \item Proportional to the strength of the electric field in resistive materials
+ \end{itemize}
+ \item Electrons move randomly in the absense of an electric field (drift velocity is 0)
+ \item The drift velocity in a $\SI{2}{\centi\meter}$ diameter copper wire in
+       $\SI{1}{\ampere}$ current $\approx\SI{8}{\centi\meter}$ per hour~\cite{wiki:Speed_of_electricity}
+ \item Back and forth movement in alternating current (no net movement)
+ \begin{itemize}
+  \item Within few micrometers
+ \end{itemize}
+\end{itemize}
 
 \end{frame}
 
@@ -411,8 +423,8 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 \end{frame}
 
 \begin{frame}[label=impedance_matching]{Impedance matching}
-For the maximal power transfer, the impedances shall match between the parts.
 \begin{itemize}
+ \item Required for the maximal power transfer
  \item Lossy matching can be achieved with a resistive network (often an L pad)
   \begin{itemize}
    \item Frequency independent
