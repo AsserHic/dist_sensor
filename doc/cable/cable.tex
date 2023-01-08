@@ -385,7 +385,8 @@ How long does it take for the signal to reach our voltmeter once we press the bu
   Total resistance ($\sum_{n=1} ^{\infty} R_{sn}+R_{gn}$) is typically so small that it can be ignored.
 }
 \only<2>{
-  Velocity factor
+  Velocity factor (VF) tells how quickly signal propagates along the transmission line in respect to the speed of light in vacuum.
+  VF of a typical coaxial cable varies between $86\%$ (gas-injected foam high-density polyethylene) and $66\%$ (solid polyethylene dielectric).~\cite{wiki:Velocity_factor}
 }
 \end{frame}
 
@@ -459,6 +460,23 @@ How long does it take for the signal to reach our voltmeter once we press the bu
   } 
   \end{column}
 \end{columns}
+\end{frame}
+
+\section{Testing reflections}
+
+\begin{frame}{Testing reflections in practice}
+\begin{itemize}
+ \item Take a long cable for a reasonable delay between the test pulse and its reflection
+ \item Connect your cable to a signal generator, which generates short pulses with reasonable voltages
+ \begin{itemize}
+  \item We are using $\SI{32.6}{\nano\second}$ pulses of $\SI{6}{\volt}$ peak-to-peak
+  \item The other end of the cable is left open for the following experiments
+ \end{itemize}
+ \item Connect an oscilloscope probe to the input side of the cable and use input pulses for the triggering
+\end{itemize}
+\centering\tcbox[colframe=green!30!black, colback=green!30]{
+  \includegraphics[width=0.30\linewidth]{pulse_setup.jpg}
+}
 \end{frame}
 
 \begin{frame}{Pulse example: the setup}
