@@ -71,6 +71,31 @@
  \end{description}
 \end{frame}
 
+\begin{frame}[label=coaxial]{Coaxial cable}
+Coaxial cables consist of a core wire, which is surrounded by an inner dielectric insulator, a conducting shield, and a protecting outer shield.
+\bigskip
+\begin{columns}
+  \begin{column}{0.48\textwidth}\small
+    Characteristic impedance:~\cite[p. 1116]{horowitz2015art}
+    \begin{equation*}
+      Z_0 = \sqrt{L/C} = \frac{138}{\sqrt{\epsilon}}\log_{10}{\frac{b}{a}}
+    \end{equation*}
+    \begin{description}
+      \setbeamertemplate{description item}[align left]
+      \item[$a$] outer diameter of the cable
+      \item[$b$] innner diameter
+      \item[$\epsilon$] dielectric constant
+    \end{description}
+    The ratio of inductance and capacitance is independent of the length.
+  \end{column}
+  \begin{column}{0.48\textwidth}
+   \tcbox[colframe=green!30!black, colback=green!30]{
+    \includegraphics[width=0.65\linewidth]{coaxial_con.jpg}
+  }
+  \end{column}
+\end{columns}
+\end{frame}
+
 \begin{frame}{What are the wires}
 \begin{columns}
  \begin{column}{0.48\textwidth}
@@ -122,12 +147,17 @@
 
 \begin{frame}{Connectors}
 \begin{columns}
-  \begin{column}{0.48\textwidth}
+  \begin{column}{0.52\textwidth}
    \begin{itemize}
-    \item Strong, solderless and detachable joints
+    \item Connectors are used to form strong, solderless and often detachable joints
+    \item Ground connection is emphasized in many cable connectors
+      \begin{itemize}
+        \item Connect first --- disconnect last
+      \end{itemize}
+    \item Small connectors are typical for high frequency applications as they tend to have less parasitic capacitance
    \end{itemize}
   \end{column}
-  \begin{column}{0.48\textwidth}
+  \begin{column}{0.44\textwidth}
    \tcbox[colframe=green!30!black, colback=green!30]{
     \includegraphics[width=0.65\linewidth]{connectors.jpg}
   } 
@@ -164,31 +194,6 @@
  \end{itemize}
 \end{frame}
 
-\begin{frame}[label=impedance]{Impedance}
-\begin{columns}
-  \begin{column}{0.58\textwidth}
-   \begin{itemize}
-    \item Impedance is the total opposition to alternating current
-    \item Unit is ohm ($\SI{}{\ohm}$)
-    \item Resistance means energy loss as heat
-    \item No energy is lost through the reactance
-    \item Reactance consists of capacitive ($X_C$) and inductive ($X_L$) reactance
-     \begin{itemize}
-      \item inductive reactance ($X > 0$)
-      \item purely resistative ($X > 0$)
-      \item capacitative reactance ($X < 0$)
-     \end{itemize}
-   \end{itemize}
-  \end{column}
-  \begin{column}{0.38\textwidth}
-    \begin{block}{$Z = R + jX$}
-        $R$ is the resistance \\
-        $X$ is the reactance\footnote{Please notice the imaginary symbol of $j = \sqrt{-1}$ in place of the typical $i$. This is to avoid confusion with the current symbol.}
-    \end{block}
-  \end{column}
-\end{columns}
-\end{frame}
-
 \begin{frame}{Skin effect}
  \begin{tikzpicture}[remember picture,overlay]
   \filldraw[xshift=0.85\linewidth, yshift=-3.3cm, inner color=white, outer color=blue] (0,0) circle (1.2);
@@ -207,6 +212,31 @@
     \end{description}
   \item Makes the signal losses frequency dependent
  \end{itemize}
+\end{frame}
+
+\begin{frame}[label=impedance]{Impedance}
+\begin{columns}
+  \begin{column}{0.58\textwidth}
+   \begin{itemize}
+    \item Impedance is the total opposition to alternating current
+    \item Unit is ohm ($\SI{}{\ohm}$)
+    \item Resistance means energy loss as heat
+    \item No energy is lost through the reactance
+    \item Reactance consists of capacitive ($X_C$) and inductive ($X_L$) reactance
+     \begin{itemize}
+      \item inductive reactance ($X > 0$)
+      \item purely resistive ($X > 0$)
+      \item capacitive reactance ($X < 0$)
+     \end{itemize}
+   \end{itemize}
+  \end{column}
+  \begin{column}{0.38\textwidth}
+    \begin{block}{$Z = R + jX$}
+        $R$ is the resistance \\
+        $X$ is the reactance\footnote{Please notice the imaginary symbol of $j = \sqrt{-1}$ in place of the typical $i$. This is to avoid confusion with the current symbol.}
+    \end{block}
+  \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Smith diagram}
@@ -306,15 +336,26 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 	(3,0) to [short, -o] (4,0);
 \end{circuitikz}
 \begin{itemize}
- \item Transmit power from source to load
+ \item Transmits power from source to load
  \item Theory becomes important as the length of the wire exceeds $\frac{\lambda}{20}$
- \item An open wire acts like a short circuit when its length is $\frac{\lambda}{4}$ (or its odd multiple)!
  \item Transmissions lines behave capacitively on low frequencies
+ \item An open wire acts like a short circuit when its length is $\frac{\lambda}{4}$ (or its odd multiple)!
+ \begin{itemize}
+  \item The following vector network analyzer examples are produced by measuring $S_{11}$ reflections
+        of an unconnected \hyperlink{coaxial}{coaxial cable}
+ \end{itemize}
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Open coaxial: high impedance}
+\centering\includegraphics[keepaspectratio, width=0.75\paperwidth]{OPEN.png}
+\end{frame}
 
-\begin{frame}[t]{Transmission lines}
+\begin{frame}{Open coaxial: low impedance}
+\centering\includegraphics[keepaspectratio, width=0.75\paperwidth]{SHORT.png}
+\end{frame}
+
+\begin{frame}[t]{Transmission line equivalent}
 \begin{circuitikz}[scale=0.4, transform shape]
   \draw
     (0,0) to [short, o-] (1,0)
@@ -380,7 +421,7 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 \end{circuitikz}
 
 \only<1>{
-  We can imagine a transmission line as a series of (indefinitelly small) circuits.
+  We can imagine a transmission line as a series of (indefinitely small) circuits.
 
   Total resistance ($\sum_{n=1} ^{\infty} R_{sn}+R_{gn}$) is typically so small that it can be ignored.
 }
@@ -390,41 +431,20 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 }
 \end{frame}
 
-\begin{frame}[label=coaxial]{Coaxial cable}
-\begin{columns}
-  \begin{column}{0.48\textwidth}
-    Coaxial
-
-    Characteristic impedance:
-    \begin{equation*} % Appendix H, p.1116
-      Z_0 = \sqrt{L/C} = \frac{138}{\sqrt{\epsilon}}\log_{10}{\frac{b}{a}}
-    \end{equation*}
-    \begin{description}
-      \setbeamertemplate{description item}[align left]
-      \item[$a$] outer diameter of the cable
-      \item[$b$] innner diameter
-      \item[$\epsilon$] dielectric constant
-    \end{description}
-    The ratio of inductance and capacitance is independent of the length.
-  \end{column}
-  \begin{column}{0.48\textwidth}
-   \tcbox[colframe=green!30!black, colback=green!30]{
-    \includegraphics[width=0.65\linewidth]{coaxial_con.jpg}
-  } 
-  \end{column}
-\end{columns}
-\end{frame}
-
 \begin{frame}{Reflections}
 \begin{itemize}
  \item Improper \hyperlink{impedance_matching}{impedance matching} causes reflections
  \item Square waves include high frequency components and
-       the frequency specific properties of the transmission line will distord the signal
+       the frequency specific properties of the transmission line will cause a distorted signal
  \item Cases: Open (reflection back), Closed (inverse reflection) - attenuation
+  \begin{itemize}
+   \item We will demonstrate this on Section~\ref{secReflection}
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[label=impedance_matching]{Impedance matching}
+\small
 \begin{itemize}
  \item Required for the maximal power transfer
  \item Lossy matching can be achieved with a resistive network (often an L pad)
@@ -434,9 +454,9 @@ How long does it take for the signal to reach our voltmeter once we press the bu
   \end{itemize}
  \item Reactive matching is more efficient
   \begin{itemize}
-   \item Frequency specific solution with a limited bandwith
-   \item Impedance matching transformermers
-   \item Low pass, high pass, or bandpass configurations
+   \item Frequency specific solution with a limited bandwidth
+   \item Impedance matching transformers
+   \item Smith charts are useful when designing matching networks~\cite{w2aew2023}
   \end{itemize}
 \end{itemize}
 \includegraphics[width=0.4\linewidth]{coaxial_out.jpg}
@@ -462,7 +482,7 @@ How long does it take for the signal to reach our voltmeter once we press the bu
 \end{columns}
 \end{frame}
 
-\section{Testing reflections}
+\section{Testing reflections}\label{secReflection}
 
 \begin{frame}{Testing reflections in practice}
 \begin{itemize}
