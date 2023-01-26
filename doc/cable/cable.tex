@@ -75,7 +75,7 @@
 Coaxial cables consist of a core wire, which is surrounded by an inner dielectric insulator, a conducting shield, and a protecting outer shield.
 \bigskip
 \begin{columns}
-  \begin{column}{0.48\textwidth}\small
+  \begin{column}{0.52\textwidth}\small
     Characteristic impedance:~\cite[p. 1116]{horowitz2015art}
     \begin{equation*}
       Z_0 = \sqrt{L/C} = \frac{138}{\sqrt{\epsilon}}\log_{10}{\frac{b}{a}}
@@ -102,11 +102,11 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
    \begin{itemize}
     \only<1->{\item Conductors?
 	  \begin{circuitikz}
-	    \draw (0,0) to[ short ] (2,0); 
-	  \end{circuitikz}}    
+	    \draw (0,0) to[ short ] (2,0);
+	  \end{circuitikz}}
     \only<2->{\item Resistors?
 	  \scalebox{0.5}{\begin{circuitikz}
-	    \draw (0,0) to[ european resistor ] (2,0); 
+	    \draw (0,0) to[ european resistor ] (2,0);
 	  \end{circuitikz}}}
     \only<3->{\item Antenna?
 	  \scalebox{0.3}{\begin{circuitikz}
@@ -114,11 +114,11 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
 	  \end{circuitikz}}}
     \only<4->{\item Capasitors?
 	  \scalebox{0.3}{\begin{circuitikz}
-	    \draw (0,0) to[ capacitor ] (2,0); 
+	    \draw (0,0) to[ capacitor ] (2,0);
 	  \end{circuitikz}}}
     \only<5->{\item Inductors?
 	  \scalebox{0.5}{\begin{circuitikz}
-	    \draw (0,0) to[ cute inductor ] (2,0); 
+	    \draw (0,0) to[ cute inductor ] (2,0);
 	  \end{circuitikz}}}
     \only<6->{\item Clotheslines?}
    \end{itemize}
@@ -133,7 +133,7 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
     }\only<6->{\includegraphics[width=0.75\linewidth]{clothesline.jpg}}
   }
   \only<1>{Charge carriers are transferred along the wires.}
-  \only<2>{Some energy is dissipated as heat unless superconductors.}
+  \only<2>{Some energy is dissipated as heat except in superconductors.}
   \only<3>{Unshielded wires can be used to transmit and receive electromagnetic radiation.}
   \only<4>{Wires store tiny charges and their parasitic capacitance can be seen in many sensitive, high-frequency applications.}
   \only<5>{A magnetic field forms around a conducting wire and it stores some energy.}
@@ -150,6 +150,7 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
   \begin{column}{0.52\textwidth}
    \begin{itemize}
     \item Connectors are used to form strong, solderless and often detachable joints
+    \item Prevent unintended miswiring
     \item Ground connection is emphasized in many cable connectors
       \begin{itemize}
         \item Connect first --- disconnect last
@@ -160,7 +161,7 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
   \begin{column}{0.44\textwidth}
    \tcbox[colframe=green!30!black, colback=green!30]{
     \includegraphics[width=0.65\linewidth]{connectors.jpg}
-  } 
+  }
   \end{column}
 \end{columns}
 \end{frame}
@@ -191,6 +192,9 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
     \item Price
    \end{itemize}
   \item Cross-sectional area ($\SI{}{\meter^2}$)~\cite{iec2004}
+  \begin{itemize}
+    \item Americal wire gauge is used widely
+   \end{itemize}
  \end{itemize}
 \end{frame}
 
@@ -284,7 +288,7 @@ Coaxial cables consist of a core wire, which is surrounded by an inner dielectri
   \item Proportional to the strength of the electric field in resistive materials
  \end{itemize}
  \item Electrons move randomly in the absence of an electric field (drift velocity is 0)
- \item The drift velocity in a $\SI{2}{\centi\meter}$ diameter copper wire in
+ \item The drift velocity in a $\SI{2}{\milli\meter}$ diameter copper wire in
        $\SI{1}{\ampere}$ current $\approx\SI{8}{\centi\meter}$ per hour~\cite{wiki:Speed_of_electricity}
  \item Back and forth movement in alternating current (no net movement)
  \begin{itemize}
@@ -477,7 +481,7 @@ How long does it take for the signal to reach our voltmeter once we press the bu
   \begin{column}{0.48\textwidth}
    \tcbox[colframe=green!30!black, colback=green!30]{
     \includegraphics[width=0.65\linewidth]{terminators.jpg}
-  } 
+  }
   \end{column}
 \end{columns}
 \end{frame}
